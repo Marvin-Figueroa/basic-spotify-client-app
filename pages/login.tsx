@@ -12,24 +12,22 @@ type LoginProps = {
 function Login({ providers }: LoginProps) {
   return (
     <Container
-      display='flex'
-      alignItems='center'
-      justify='center'
-      direction='column'
-      gap={10}
       css={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         minHeight: '100vh',
+        minWidth: '100vw',
         gap: '40px',
         backgroundColor: '#191414',
-      }}
-      responsive
-      lg>
+      }}>
       <Image
         src={spotifyLogo}
         alt='Spotify Logo'
         priority
-        width={200}
-        height={200}
+        width={150}
+        height={150}
         placeholder='blur' // Optional blur-up while loading
       />
       {Object.values(providers).map((provider) => (
