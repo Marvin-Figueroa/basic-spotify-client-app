@@ -61,7 +61,7 @@ function Album({ album, saved }: AlbumProps) {
       </Card.Header>
       <Card.Body css={{ p: 0 }}>
         <Card.Image
-          src={album.images[0].url}
+          src={album.images[1].url}
           width='100%'
           height='100%'
           objectFit='cover'
