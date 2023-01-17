@@ -22,7 +22,7 @@ function Playlist({ playlist }: PlaylistProps) {
         </Card.Header>
         <Card.Body css={{ p: 0 }}>
           <Card.Image
-            src={playlist.images[0].url}
+            src={playlist.images[1]?.url || playlist.images[0]?.url}
             width='100%'
             height='100%'
             objectFit='cover'
