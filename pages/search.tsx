@@ -6,7 +6,7 @@ import spotifyApi from '../lib/spotify';
 import Songs from '../components/Songs';
 import Albums from '../components/Albums';
 import Artists from '../components/Artists';
-import SearchResults from '../components/SearchResults';
+import PaginatedItemsSection from '../components/PaginatedItemsSection';
 
 function Search() {
   const pageSize = 5;
@@ -133,38 +133,38 @@ function Search() {
 
       <Spacer y={2} />
       {query && songResults.length > 0 && (
-        <SearchResults
+        <PaginatedItemsSection
           loading={loadingSongs}
           title='Songs Found'
           pageSize={pageSize}
           onPageChange={handleSongPageChange}
           totalItems={totalSongs}>
           <Songs songs={songResults} />
-        </SearchResults>
+        </PaginatedItemsSection>
       )}
 
       <Spacer y={2} />
       {query && albumResults.length > 0 && (
-        <SearchResults
+        <PaginatedItemsSection
           loading={loadingAlbums}
           title='Albums Found'
           pageSize={pageSize}
           onPageChange={handleAlbumPageChange}
           totalItems={totalAlbums}>
           <Albums albums={albumResults} />
-        </SearchResults>
+        </PaginatedItemsSection>
       )}
 
       <Spacer y={2} />
       {query && artistResults.length > 0 && (
-        <SearchResults
+        <PaginatedItemsSection
           loading={loadingArtists}
           title='Artists Found'
           pageSize={pageSize}
           onPageChange={handleArtistPageChange}
           totalItems={totalArtists}>
           <Artists artists={artistResults} />
-        </SearchResults>
+        </PaginatedItemsSection>
       )}
     </PageLayout>
   );
