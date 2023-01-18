@@ -155,14 +155,14 @@ function Profile() {
                     }}
                     align='center'
                     justify='center'>
-                    <Link href='/library'>
-                      <UILink
-                        css={{ border: '1px solid #1DB954' }}
-                        block
-                        color='success'>
+                    <UILink
+                      css={{ border: '1px solid #1DB954' }}
+                      block
+                      color='success'>
+                      <Link href='/library'>
                         <Text color='#1DB954'>My Library</Text>
-                      </UILink>
-                    </Link>
+                      </Link>
+                    </UILink>
                   </Row>
                 </Col>
               </Row>
