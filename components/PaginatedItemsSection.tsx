@@ -24,6 +24,7 @@ function SearchResults({
   pageSize,
   onPageChange,
 }: SearchResultsProps) {
+  const totalPages = Math.ceil(totalItems / pageSize);
   return (
     <>
       <Text css={{ textAlign: 'center' }} h3>
@@ -43,16 +44,20 @@ function SearchResults({
       ) : (
         children
       )}
-      <Spacer y={1} />
-      <Container css={{ display: 'flex', justifyContent: 'center' }}>
-        <Pagination
-          color='success'
-          size='lg'
-          total={Math.ceil(totalItems / pageSize)}
-          initialPage={1}
-          onChange={onPageChange}
-        />
-      </Container>
+      {totalPages > 1 ? (
+        <>
+          <Spacer y={1} />
+          <Container css={{ display: 'flex', justifyContent: 'center' }}>
+            <Pagination
+              color='success'
+              size='lg'
+              total={totalPages}
+              initialPage={1}
+              onChange={onPageChange}
+            />
+          </Container>
+        </>
+      ) : null}
     </>
   );
 }
