@@ -27,7 +27,7 @@ function SearchResults({
   const totalPages = Math.ceil(totalItems / pageSize);
   return (
     <>
-      <Text css={{ textAlign: 'center' }} h3>
+      <Text css={{ textAlign: 'center' }} h2>
         {title}
       </Text>
       {loading ? (
