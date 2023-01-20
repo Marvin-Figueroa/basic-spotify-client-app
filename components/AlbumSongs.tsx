@@ -18,11 +18,10 @@ function AlbumSongs({ albumId }: AlbumSongsProps) {
       .getAlbumTracks(albumId, { limit: 50, offset: 0 })
       .then(
         function (data) {
-          console.log(data.body);
           setSongs(data.body.items);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoading(false));
@@ -66,7 +65,9 @@ function AlbumSongs({ albumId }: AlbumSongsProps) {
       <Table.Body>
         {songs.map((song) => (
           <Table.Row key={song.id}>
-            <Table.Cell css={{ textAlign: 'left' }}>{song.name}</Table.Cell>
+            <Table.Cell css={{ textAlign: 'left', whiteSpace: 'initial' }}>
+              {song.name}
+            </Table.Cell>
             <Table.Cell>
               {millisToMinutesAndSeconds(song.duration_ms)}
             </Table.Cell>
