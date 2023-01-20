@@ -20,9 +20,7 @@ function NavBar() {
         <FaSpotify color='#1DB954' size='50' />
       </Navbar.Brand>
       <Navbar.Content
-        activeColor='success'
         hideIn='xs'
-        variant='highlight-rounded'
         css={{
           '@xsMin': {
             d: 'flex',
@@ -87,10 +85,7 @@ function NavBar() {
               />
             </Dropdown.Trigger>
           </Navbar.Item>
-          <Dropdown.Menu
-            aria-label='User menu actions'
-            color='success'
-            onAction={(actionKey) => console.log({ actionKey })}>
+          <Dropdown.Menu aria-label='User menu actions' color='success'>
             <Dropdown.Item key='profile' css={{ height: '$18' }}>
               <Text
                 b
@@ -119,57 +114,17 @@ function NavBar() {
         </Dropdown>
       </Navbar.Content>
       <Navbar.Collapse>
-        <Navbar.CollapseItem
-          activeColor='secondary'
-          // isActive={index === 2}
-        >
-          <Link
-            color='inherit'
-            // css={{
-            //   minWidth: '100%',
-            // }}
-            href='/'>
-            Home
-          </Link>
+        <Navbar.CollapseItem>
+          <Link href='/'>Home</Link>
         </Navbar.CollapseItem>
-        <Navbar.CollapseItem
-          activeColor='secondary'
-          // isActive={index === 2}
-        >
-          <Link
-            color='inherit'
-            // css={{
-            //   minWidth: '100%',
-            // }}
-            href='search'>
-            Search
-          </Link>
+        <Navbar.CollapseItem>
+          <Link href='search'>Search</Link>
         </Navbar.CollapseItem>
-        <Navbar.CollapseItem
-          activeColor='secondary'
-          // isActive={index === 2}
-        >
-          <Link
-            color='inherit'
-            // css={{
-            //   minWidth: '100%',
-            // }}
-            href='profile'>
-            Profile
-          </Link>
+        <Navbar.CollapseItem>
+          <Link href='profile'>Profile</Link>
         </Navbar.CollapseItem>
-        <Navbar.CollapseItem
-          activeColor='secondary'
-          // isActive={index === 2}
-        >
-          <Link
-            color='inherit'
-            // css={{
-            //   minWidth: '100%',
-            // }}
-            href='library'>
-            Library
-          </Link>
+        <Navbar.CollapseItem>
+          <Link href='library'>Library</Link>
         </Navbar.CollapseItem>
       </Navbar.Collapse>
     </Navbar>
