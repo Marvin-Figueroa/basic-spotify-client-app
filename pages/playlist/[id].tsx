@@ -24,7 +24,7 @@ function PlaylistDetail() {
           setPlaylist(data.body);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingPlaylist(false));
@@ -102,20 +102,6 @@ function PlaylistDetail() {
                   <Spacer x={1} />
                   <Text b color='success'>
                     {playlist?.name || 'No playlist name'}
-                  </Text>
-                </Row>
-                <Row
-                  css={{
-                    '@xs': {
-                      justifyContent: 'flex-start',
-                    },
-                  }}
-                  justify='center'
-                  align='center'>
-                  <Text b>Description: </Text>
-                  <Spacer x={1} />
-                  <Text b color='success'>
-                    {playlist?.description}
                   </Text>
                 </Row>
                 <Row
