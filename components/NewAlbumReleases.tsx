@@ -1,14 +1,8 @@
-import {
-  Container,
-  Loading,
-  Pagination,
-  Spacer,
-  Text,
-} from '@nextui-org/react';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import useSpotify from '../hooks/useSpotify';
 import Albums from './Albums';
+import PaginatedItemsSection from './PaginatedItemsSection';
 
 function NewAlbumReleases() {
   const pageSize = 5;
@@ -31,7 +25,7 @@ function NewAlbumReleases() {
             setTotalAlbums(data.body.albums.total);
           },
           function (err) {
-            console.log('Something went wrong!', err);
+            alert(err);
           }
         )
         .finally(() => setLoadingAlbums(false));
@@ -48,50 +42,24 @@ function NewAlbumReleases() {
       })
       .then(
         function (data) {
-          console.log(data.body.albums);
           setNewReleases(data.body.albums.items);
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       )
       .finally(() => setLoadingAlbums(false));
   }
 
   return (
-    <>
-      <Text css={{ textAlign: 'center' }} h2>
-        New Album Releases
-      </Text>
-      <Spacer y={2} />
-      <>
-        {loadingAlbums ? (
-          <Loading
-            css={{
-              left: '50%',
-              transform: 'translateX(-50%)',
-            }}
-            color='success'
-            textColor='success'
-            size='xl'>
-            Loading...
-          </Loading>
-        ) : (
-          <Albums albums={newReleases} />
-        )}
-        <Spacer y={1} />
-        <Container css={{ display: 'flex', justifyContent: 'center' }}>
-          <Pagination
-            color='success'
-            size='lg'
-            total={Math.ceil(totalAlbums / pageSize)}
-            initialPage={1}
-            onChange={handleAlbumsPageChange}
-          />
-        </Container>
-      </>
-    </>
+    <PaginatedItemsSection
+      loading={loadingAlbums}
+      title='New Album Releases'
+      pageSize={pageSize}
+      onPageChange={handleAlbumsPageChange}
+      totalItems={totalAlbums}>
+      <Albums albums={newReleases} />
+    </PaginatedItemsSection>
   );
 }
 
