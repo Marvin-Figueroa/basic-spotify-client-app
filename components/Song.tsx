@@ -14,30 +14,23 @@ function Song({ song, saved }: SongProps) {
   const [isSaved, setIsSaved] = useState(saved);
   useEffect(() => setIsSaved(saved), [saved]);
 
-  console.log('track', song);
-  console.log('is saved', saved);
-
   function handleSaveChange() {
     if (!isSaved) {
-      // Add songs to the signed in user's Your Music library
       spotifyApi.addToMySavedTracks([song.id]).then(
         function (data) {
           setIsSaved(true);
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       );
     } else {
-      // Remove songs from the signed in user's Your Music library
       spotifyApi.removeFromMySavedTracks([song.id]).then(
         function (data) {
           setIsSaved(false);
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       );
     }
@@ -45,13 +38,13 @@ function Song({ song, saved }: SongProps) {
 
   return (
     <Card css={{ w: '100%', h: '300px' }}>
-      <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-        <Col dir='colum'>
-          <Link
-            href={{
-              pathname: '/song/[id]',
-              query: { id: song.id },
-            }}>
+      <Link
+        href={{
+          pathname: '/song/[id]',
+          query: { id: song.id },
+        }}>
+        <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
+          <Col dir='colum'>
             <Badge color='success'>{song.name}</Badge>
             <Spacer y={1} />
             <Badge color='default'>
@@ -60,28 +53,20 @@ function Song({ song, saved }: SongProps) {
                 .slice(0, 2)
                 .join(' & ')}
             </Badge>
-          </Link>
-        </Col>
-      </Card.Header>
-      <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src={song.album.images[1].url}
-          width='100%'
-          height='100%'
-          objectFit='cover'
-          alt='Playlist Image'
-        />
-      </Card.Body>
-      <Card.Footer
-        isBlurred
-        css={{
-          position: 'absolute',
-          bgBlur: '#ffffff66',
-          borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-          bottom: 0,
-          zIndex: 1,
-        }}>
-        <Row justify='flex-start'>
+          </Col>
+        </Card.Header>
+        <Card.Body css={{ p: 0 }}>
+          <Card.Image
+            src={song.album.images[1].url}
+            width='100%'
+            height='100%'
+            objectFit='cover'
+            alt='Song cover image'
+          />
+        </Card.Body>
+      </Link>
+      <Card.Footer>
+        <Row>
           <Col>
             <Row justify='space-between' align='center'>
               <Badge size='md' variant='flat'>
