@@ -7,7 +7,7 @@ import {
 } from '@nextui-org/react';
 import React, { ReactNode } from 'react';
 
-type SearchResultsProps = {
+type PaginatedItemsSectionProps = {
   loading: boolean;
   title: string;
   children: ReactNode;
@@ -16,14 +16,14 @@ type SearchResultsProps = {
   onPageChange: (page: number) => void;
 };
 
-function SearchResults({
+function PaginatedItemsSection({
   loading,
   title,
   children,
   totalItems,
   pageSize,
   onPageChange,
-}: SearchResultsProps) {
+}: PaginatedItemsSectionProps) {
   const totalPages = Math.ceil(totalItems / pageSize);
   return (
     <>
@@ -62,4 +62,4 @@ function SearchResults({
   );
 }
 
-export default SearchResults;
+export default PaginatedItemsSection;
