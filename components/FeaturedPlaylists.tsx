@@ -1,13 +1,7 @@
-import {
-  Container,
-  Loading,
-  Pagination,
-  Spacer,
-  Text,
-} from '@nextui-org/react';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import useSpotify from '../hooks/useSpotify';
+import PaginatedItemsSection from './PaginatedItemsSection';
 import Playlists from './Playlists';
 
 function FeaturedPlaylists() {
@@ -28,7 +22,6 @@ function FeaturedPlaylists() {
           limit: pageSize,
           offset: 0,
           country: 'SV',
-          locale: 'es_SV',
           timestamp: new Date().toISOString(),
         })
         .then(
@@ -37,7 +30,7 @@ function FeaturedPlaylists() {
             setTotalPlaylists(data.body.playlists.total);
           },
           function (err) {
-            console.log('Something went wrong!', err);
+            alert(err);
           }
         )
         .finally(() => setLoadingPlaylists(false));
@@ -51,7 +44,6 @@ function FeaturedPlaylists() {
         limit: pageSize,
         offset: pageSize * (page - 1),
         country: 'SV',
-        locale: 'es_SV',
         timestamp: new Date().toISOString(),
       })
       .then(
@@ -60,43 +52,20 @@ function FeaturedPlaylists() {
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       )
       .finally(() => setLoadingPlaylists(false));
   }
 
   return (
-    <>
-      <Text css={{ textAlign: 'center' }} h2>
-        Featured Playlists
-      </Text>
-      <Spacer y={2} />
-      {loadingPlaylists ? (
-        <Loading
-          css={{
-            left: '50%',
-            transform: 'translateX(-50%)',
-          }}
-          color='success'
-          textColor='success'
-          size='xl'>
-          Loading...
-        </Loading>
-      ) : (
-        <Playlists playlists={featuredPlaylists} />
-      )}
-      <Spacer y={1} />
-      <Container css={{ display: 'flex', justifyContent: 'center' }}>
-        <Pagination
-          color='success'
-          size='lg'
-          total={Math.ceil(totalPlaylists / pageSize)}
-          initialPage={1}
-          onChange={handlePlaylistsPageChange}
-        />
-      </Container>
-    </>
+    <PaginatedItemsSection
+      loading={loadingPlaylists}
+      title='Featured Playlists'
+      pageSize={pageSize}
+      onPageChange={handlePlaylistsPageChange}
+      totalItems={totalPlaylists}>
+      <Playlists playlists={featuredPlaylists} />
+    </PaginatedItemsSection>
   );
 }
 
