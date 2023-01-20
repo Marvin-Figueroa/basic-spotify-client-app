@@ -15,18 +15,14 @@ function Albums({ albums }: AlbumsProps) {
 
   const [areSavedAlbums, setAreSavedAlbums] = useState<boolean[]>([]);
   useEffect(() => {
-    // Check if albums are in the signed in user's Your Music library
     if (spotifyApi.getAccessToken() && albums.length > 0) {
       const albumsIds = albums.map((album) => album.id);
       spotifyApi.containsMySavedAlbums(albumsIds).then(
         function (data) {
-          // An array is returned, where the first element corresponds to the first album ID in the query
           setAreSavedAlbums(data.body);
-          console.log('Saved Albums State: ', data.body);
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       );
     }

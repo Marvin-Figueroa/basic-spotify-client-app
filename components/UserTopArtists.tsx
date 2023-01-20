@@ -12,7 +12,6 @@ function UserTopArtists() {
   );
 
   useEffect(() => {
-    /* Get a User’s Top Artists*/
     setLoadingArtists(true);
     spotifyApi
       .getMyTopArtists({
@@ -25,7 +24,7 @@ function UserTopArtists() {
           setTotalArtists(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingArtists(false));
@@ -44,7 +43,7 @@ function UserTopArtists() {
           setTotalArtists(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingArtists(false));

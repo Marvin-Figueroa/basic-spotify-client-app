@@ -35,7 +35,7 @@ function Profile() {
         setUser(data.body);
       },
       function (err) {
-        console.log('Something went wrong!', err);
+        alert(err);
       }
     );
 
@@ -50,7 +50,7 @@ function Profile() {
           setTotalFollowedArtists(data.body.artists.total || 0);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingFollowedArtists(false));
@@ -72,7 +72,7 @@ function Profile() {
           setTotalFollowedArtists(data.body.artists.total || 0);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingFollowedArtists(false));

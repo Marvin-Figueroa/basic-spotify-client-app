@@ -26,7 +26,7 @@ function ArtistTopSongs({ artistId }: ArtistTopSongsProps) {
           setTotalSongs(data.body.tracks.length);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingSongs(false));

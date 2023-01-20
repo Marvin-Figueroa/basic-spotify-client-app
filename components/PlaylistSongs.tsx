@@ -26,12 +26,11 @@ function PlaylistSongs({ playlistId }: PlaylistSongsProps) {
       .getPlaylistTracks(playlistId, { limit: pageSize, offset: 0 })
       .then(
         function (data) {
-          console.log(data.body);
           setSongs(data.body.items);
           setTotalSongs(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoading(false));
@@ -47,11 +46,10 @@ function PlaylistSongs({ playlistId }: PlaylistSongsProps) {
       })
       .then(
         function (data) {
-          console.log(data.body);
           setSongs(data.body.items);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoading(false));

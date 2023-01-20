@@ -15,17 +15,14 @@ function Songs({ songs }: SongsProps) {
 
   const [areSavedSongs, setAreSavedSongs] = useState<boolean[]>([]);
   useEffect(() => {
-    // Check if songs are in the signed in user's Your Music library
     if (spotifyApi.getAccessToken() && songs.length > 0) {
       const songsIds = songs.map((song) => song.id);
       spotifyApi.containsMySavedTracks(songsIds).then(
         function (data) {
-          // An array is returned, where the first element corresponds to the first song ID in the query
           setAreSavedSongs(data.body);
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       );
     }

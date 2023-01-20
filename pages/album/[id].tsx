@@ -21,7 +21,6 @@ function AlbumDetail() {
       .getAlbum(id as string)
       .then(function (data) {
         setAlbum(data.body);
-        console.log(data.body);
         return data.body;
       })
       .then(function (data) {
@@ -32,15 +31,14 @@ function AlbumDetail() {
           .then(
             function (data) {
               setArtists(data.body.artists);
-              console.log('Artists information', data.body);
             },
             function (err) {
-              console.error(err);
+              alert(err);
             }
           )
           .finally(() => setLoadingArtists(false));
       })
-      .catch((err) => console.log('Something went wrong ', err))
+      .catch((err) => alert(err))
       .finally(() => setLoadingAlbum(false));
   }, [id]);
 

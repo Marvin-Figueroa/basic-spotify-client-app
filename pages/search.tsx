@@ -33,7 +33,6 @@ function Search() {
   function handleSongSearch(query: string, page = 1) {
     setQuery(query);
     setLoadingSongs(true);
-    // Search tracks whose name, album or artist contains the query
     spotifyApi
       .searchTracks(query, {
         limit: pageSize,
@@ -47,7 +46,7 @@ function Search() {
           setTotalSongs(data.body.tracks?.total as number);
         },
         function (err) {
-          console.error(err);
+          alert(err);
         }
       )
       .finally(() => setLoadingSongs(false));
@@ -74,7 +73,7 @@ function Search() {
           setTotalAlbums(data.body.albums?.total as number);
         },
         function (err) {
-          console.error(err);
+          alert(err);
         }
       )
       .finally(() => setLoadingAlbums(false));
@@ -101,7 +100,7 @@ function Search() {
           setTotalArtists(data.body.artists?.total as number);
         },
         function (err) {
-          console.error(err);
+          alert(err);
         }
       )
       .finally(() => setLoadingArtists(false));
@@ -166,6 +165,7 @@ function Search() {
           <Artists artists={artistResults} />
         </PaginatedItemsSection>
       )}
+      <Spacer y={2} />
     </PageLayout>
   );
 }

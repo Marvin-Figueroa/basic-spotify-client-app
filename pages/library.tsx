@@ -28,12 +28,11 @@ function Library() {
       })
       .then(
         function (data) {
-          console.log(data.body.items);
           setSavedAlbums(data.body.items);
           setTotalAlbums(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingAlbums(false));
@@ -50,7 +49,7 @@ function Library() {
           setTotalSongs(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingSongs(false));
@@ -65,12 +64,11 @@ function Library() {
       })
       .then(
         function (data) {
-          console.log(data.body.items);
           setSavedAlbums(data.body.items);
           setTotalAlbums(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingAlbums(false));
@@ -85,12 +83,11 @@ function Library() {
       })
       .then(
         function (data) {
-          console.log(data.body.items);
           setSongs(data.body.items);
           setTotalSongs(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingSongs(false));

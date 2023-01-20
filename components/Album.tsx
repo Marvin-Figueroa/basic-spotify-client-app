@@ -15,32 +15,23 @@ function Album({ album, saved }: AlbumProps) {
   const [isSaved, setIsSaved] = useState(saved);
   useEffect(() => setIsSaved(saved), [saved]);
 
-  console.log('album', album.name);
-  console.log('is saved', saved);
-
   function handleSaveChange() {
     if (!isSaved) {
-      // Add albums to the signed in user's Your Music library
       spotifyApi.addToMySavedAlbums([album.id]).then(
         function (data) {
-          console.log('Album added!', data);
           setIsSaved(true);
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       );
     } else {
-      // Remove albums from the signed in user's Your Music library
       spotifyApi.removeFromMySavedAlbums([album.id]).then(
         function (data) {
-          console.log('Album Removed!', data);
           setIsSaved(false);
         },
         function (err) {
           alert(err);
-          console.log('Something went wrong!', err);
         }
       );
     }
@@ -48,36 +39,28 @@ function Album({ album, saved }: AlbumProps) {
 
   return (
     <Card css={{ w: '100%', h: '300px' }}>
-      <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-        <Col dir='colum'>
-          <Link
-            href={{
-              pathname: '/album/[id]',
-              query: { id: album.id },
-            }}>
-            <Badge color='error'>{album.name}</Badge>
-          </Link>
-        </Col>
-      </Card.Header>
-      <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src={album.images[1].url}
-          width='100%'
-          height='100%'
-          objectFit='cover'
-          alt='Playlist Image'
-        />
-      </Card.Body>
-      <Card.Footer
-        isBlurred
-        css={{
-          position: 'absolute',
-          bgBlur: '#ffffff66',
-          borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-          bottom: 0,
-          zIndex: 1,
+      <Link
+        href={{
+          pathname: '/album/[id]',
+          query: { id: album.id },
         }}>
-        <Row justify='flex-start'>
+        <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
+          <Col dir='colum'>
+            <Badge color='error'>{album.name}</Badge>
+          </Col>
+        </Card.Header>
+        <Card.Body css={{ p: 0 }}>
+          <Card.Image
+            src={album.images[1].url}
+            width='100%'
+            height='100%'
+            objectFit='cover'
+            alt='Playlist Image'
+          />
+        </Card.Body>
+      </Link>
+      <Card.Footer>
+        <Row>
           <Col>
             <Row justify='space-between' align='center'>
               <Badge size='md' variant='flat'>

@@ -22,7 +22,7 @@ function SongDetail() {
           setSong(data.body);
         },
         function (err) {
-          console.log('Something went wrong', err);
+          alert(err);
         }
       )
       .finally(() => setLoading(false));
@@ -32,12 +32,11 @@ function SongDetail() {
     spotifyApi.play({ uris: [song?.uri as string] }).then(
       function () {
         setIsPlaying(true);
-        console.log('Playback started');
       },
       function (err) {
         alert(err);
         //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
-        console.log('Something went wrong!', err);
+        alert(err);
       }
     );
   }
@@ -50,7 +49,7 @@ function SongDetail() {
       function (err) {
         alert(err);
         //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
-        console.log('Something went wrong!', err);
+        alert(err);
       }
     );
     setIsPlaying(false);

@@ -27,7 +27,7 @@ function ArtistRelatedArtists({ artistId }: ArtistRelatedArtistsProps) {
           setTotalArtists(data.body.artists.length);
         },
         function (err) {
-          console.log('Something went wrong', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingArtists(false));

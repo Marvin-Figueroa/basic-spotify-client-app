@@ -30,7 +30,7 @@ function ArtistAlbums({ artistId }: ArtistAlbumsProps) {
             setTotalAlbums(data.body.total);
           },
           function (err) {
-            console.error(err);
+            alert(err);
           }
         )
         .finally(() => setLoadingAlbums(false));
@@ -50,7 +50,7 @@ function ArtistAlbums({ artistId }: ArtistAlbumsProps) {
           setTotalAlbums(data.body.total);
         },
         function (err) {
-          console.error(err);
+          alert(err);
         }
       )
       .finally(() => setLoadingAlbums(false));

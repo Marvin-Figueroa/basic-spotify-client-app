@@ -22,7 +22,7 @@ function UserTopSongs() {
           setTotalSongs(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingSongs(false));
@@ -41,7 +41,7 @@ function UserTopSongs() {
           setTotalSongs(data.body.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoadingSongs(false));

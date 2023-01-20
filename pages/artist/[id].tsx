@@ -24,8 +24,7 @@ function ArtistDetail() {
         function (data) {
           setArtist(data.body);
         },
-        function (err) {
-          console.error(err);
+        function (err) {alert(err)
         }
       )
       .finally(() => setLoadingArtist(false));

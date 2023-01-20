@@ -1,3 +1,4 @@
+import { Spacer } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import PageLayout from '../../components/PageLayout';
@@ -22,7 +23,7 @@ function CategoryDetail() {
         setCategory(data.body.name);
       },
       function (err) {
-        console.log('Something went wrong!', err);
+        alert(err);
       }
     );
     setLoading(true);
@@ -34,12 +35,11 @@ function CategoryDetail() {
       })
       .then(
         function (data) {
-          console.log(data.body);
           setPlaylists(data.body.playlists.items);
           setTotal(data.body.playlists.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoading(false));
@@ -59,7 +59,7 @@ function CategoryDetail() {
           setTotal(data.body.playlists.total);
         },
         function (err) {
-          console.log('Something went wrong!', err);
+          alert(err);
         }
       )
       .finally(() => setLoading(false));
@@ -75,6 +75,7 @@ function CategoryDetail() {
         loading={loading}>
         <Playlists playlists={playlists} />
       </PaginatedItemsSection>
+      <Spacer y={2} />
     </PageLayout>
   );
 }
