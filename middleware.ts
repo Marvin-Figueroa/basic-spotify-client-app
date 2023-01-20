@@ -9,13 +9,8 @@ export async function middleware(req: NextRequest) {
   });
 
   if (!token) {
-    const requestedPage = req.nextUrl.pathname;
     const url = req.nextUrl.clone();
     url.pathname = '/login';
-
-    if (requestedPage !== '/') {
-      url.search = `p=${requestedPage}`;
-    }
 
     return NextResponse.redirect(url);
   }
@@ -24,5 +19,15 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: '/',
+  matcher: [
+    '/',
+    '/search/:path*',
+    '/profile/:path*',
+    '/library/:path*',
+    '/song/:path*',
+    '/artist/:path*',
+    '/playlist/:path*',
+    '/album/:path*',
+    '/category/:path*',
+  ],
 };
